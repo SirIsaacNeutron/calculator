@@ -10,8 +10,8 @@ body {
 }
 
 .calculator {
-    height: 400px;
-    width: 300px;
+    height: 500px;
+    width: 400px;
 
     display: flex;
     flex-direction: column;
@@ -41,11 +41,6 @@ body {
     flex: 1;
 }
 
-.operator-buttons {
-    display: flex;
-    flex-direction: column;
-}
-
 .row {
     display: flex;
     height: 100%;
@@ -68,7 +63,7 @@ body {
 
 /* if .operator isn't defined after .button, it won't override .button's width */
 .operator {
-    width: 200px;
+    width: 100%;
 }
 
 .number-button {
@@ -76,6 +71,10 @@ body {
     color: white;
 }
 
+.decimal-button, .equals-button {
+    flex: 1;
+}
+
 .zero-button {
-    flex: 2 1 auto;
+    flex: 2.02;
 }
