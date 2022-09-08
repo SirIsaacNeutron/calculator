@@ -18,7 +18,7 @@ body {
     display: flex;
     flex-direction: column;
     border: 0px solid gray;
-    border-radius: 25px;
+    border-radius: 15px;
 }
 
 .display {
@@ -30,8 +30,8 @@ body {
     padding: 30px;
 
     font-size: 2rem;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 .buttons {
@@ -87,7 +87,7 @@ body {
 }
 
 .equals-button {
-    border-bottom-right-radius: 25px;
+    border-bottom-right-radius: 15px;
 }
 
 .decimal-button, .equals-button {
@@ -98,5 +98,5 @@ body {
     /* doesn't align buttons perfectly if .calculator 
     is made a lot bigger or a lot smaller */
     flex: 2.02;
-    border-bottom-left-radius: 25px;
+    border-bottom-left-radius: 15px;
 }
