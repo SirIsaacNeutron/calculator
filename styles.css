@@ -9,19 +9,39 @@ body {
     align-items: center;
 }
 
+.calculator {
+    height: 400px;
+    width: 300px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: stretch;
+    align-items: stretch;
+}
+
 .display {
     background-color: #4f4f50;
     color: white;
 
     display: flex;
     justify-content: flex-end;
+    padding: 50px;
 }
 
 .buttons {
     display: flex;
+    flex: 1;
 }
 
 .non-operator-buttons {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+}
+
+.operator-buttons {
     display: flex;
     flex-direction: column;
 }
@@ -35,11 +55,16 @@ body {
     border: 1px solid #272728;
     /* stretch to take up as much horizontal space as possible */
     width: 100%;
-    text-align: center;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* if .operator isn't defined after .button, it won't override .button's width */
 .operator {
-    width: 30px;
+    width: 50px;
+    flex: 1;
 }
 
 .number-button {
