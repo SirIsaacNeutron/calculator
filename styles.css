@@ -51,6 +51,11 @@ body {
     height: 100%;
 }
 
+.last-row {
+    display: flex;
+    height: 100%;
+}
+
 .button {
     border: 1px solid #272728;
     /* stretch to take up as much horizontal space as possible */
@@ -63,8 +68,7 @@ body {
 
 /* if .operator isn't defined after .button, it won't override .button's width */
 .operator {
-    width: 50px;
-    flex: 1;
+    width: 200px;
 }
 
 .number-button {
@@ -74,8 +78,4 @@ body {
 
 .zero-button {
     flex: 2 1 auto;
-}
-
-.last-row {
-    display: flex;
 }
