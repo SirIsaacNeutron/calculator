@@ -17,6 +17,8 @@ body {
 
     display: flex;
     flex-direction: column;
+    border: 0px solid gray;
+    border-radius: 25px;
 }
 
 .display {
@@ -28,6 +30,8 @@ body {
     padding: 30px;
 
     font-size: 2rem;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 }
 
 .buttons {
@@ -82,6 +86,10 @@ body {
     color: #ebebeb;
 }
 
+.equals-button {
+    border-bottom-right-radius: 25px;
+}
+
 .decimal-button, .equals-button {
     flex: 1;
 }
@@ -90,4 +98,5 @@ body {
     /* doesn't align buttons perfectly if .calculator 
     is made a lot bigger or a lot smaller */
     flex: 2.02;
+    border-bottom-left-radius: 25px;
 }
