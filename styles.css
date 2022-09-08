@@ -15,9 +15,6 @@ body {
 
     display: flex;
     flex-direction: column;
-
-    justify-content: stretch;
-    align-items: stretch;
 }
 
 .display {
@@ -26,7 +23,9 @@ body {
 
     display: flex;
     justify-content: flex-end;
-    padding: 50px;
+    padding: 30px;
+
+    font-size: 2rem;
 }
 
 .buttons {
@@ -46,6 +45,11 @@ body {
     height: 100%;
 }
 
+.percentage-button, .plus-minus-button, .clear-button {
+    background-color: #606061;
+    color: #e7e7e7;
+}
+
 .last-row {
     display: flex;
     height: 100%;
@@ -59,16 +63,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    font-size: 2rem;
 }
 
 /* if .operator isn't defined after .button, it won't override .button's width */
 .operator {
     width: 100%;
+
+    background-color: #f2a33c;
+    color: white;
 }
 
 .number-button {
-    background-color: #5d5d5e;
-    color: white;
+    background-color: #7a7a7b;
+    color: #ebebeb;
 }
 
 .decimal-button, .equals-button {
@@ -76,5 +85,7 @@ body {
 }
 
 .zero-button {
+    /* doesn't align buttons perfectly if .calculator 
+    is made a lot bigger or a lot smaller */
     flex: 2.02;
 }
