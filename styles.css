@@ -60,6 +60,10 @@ body {
     color: #e7e7e7;
 }
 
+.clear-button-clicked {
+    background-color: #7a7a7b;
+}
+
 .last-row {
     display: flex;
     height: 100%;
@@ -85,9 +89,18 @@ body {
     color: #fdf1e1;
 }
 
+.operator-clicked {
+    background-color: #fdf1e1;
+    color: #f2a33c;
+}
+
 .number-button {
     background-color: #7a7a7b;
     color: #ebebeb;
+}
+
+.number-button-clicked {
+    background-color: #9d9d9e;
 }
 
 .equals-button {

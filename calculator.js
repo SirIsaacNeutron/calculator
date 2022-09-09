@@ -152,5 +152,25 @@ buttons.forEach(button => {
     const buttonValue = button.getAttribute('value')
     button.addEventListener('click', e => {
         handleButtonClick(buttonValue)
+
+        if (button.classList.contains('clear-button') || button.classList.contains('plus-minus-button')
+        || button.classList.contains('percentage-button')) {
+            button.classList.add('clear-button-clicked')
+            setTimeout(() => {
+                button.classList.remove('clear-button-clicked')
+            }, 50)
+        }
+        else if (button.classList.contains('number-button')) {
+            button.classList.add('number-button-clicked')
+            setTimeout(() => {
+                button.classList.remove('number-button-clicked')
+            }, 50)
+        }
+        else if (button.classList.contains('operator')) {
+            button.classList.add('operator-clicked')
+            setTimeout(() => {
+                button.classList.remove('operator-clicked')
+            }, 50)
+        }
     })
 })
