@@ -7,6 +7,8 @@ let currentOperatorFunction = null
 let isSecondInput = false
 let hasSecondInput = false
 
+let oldFirstNumber = null
+
 const MODES = {
     OPERATOR: 'operator', // when user clicks an operator button
     INPUT: 'input' // when user is typing numbers 0-9
@@ -44,6 +46,7 @@ function handleButtonClick(buttonValue) {
             firstNumber = null
             secondNumber = null
             currentOperatorFunction = null
+            oldFirstNumber = null
 
             break
         case '+/-':
@@ -83,6 +86,7 @@ function handleButtonClick(buttonValue) {
             if (firstNumber !== null) {
                 secondNumber = displayedNumber
                 hasSecondInput = true
+                isSecondInput = true
             }
             break
         case '/':
@@ -94,12 +98,18 @@ function handleButtonClick(buttonValue) {
         case '=':
             if (isSecondInput) {
                 displayedNumber = operate(currentOperatorFunction, firstNumber, secondNumber)
-                firstNumber = displayedNumber
                 hasSecondInput = false
             }
             else {
-                displayedNumber = operate(currentOperatorFunction, firstNumber, firstNumber)
+                if (oldFirstNumber === null) {
+                    displayedNumber = operate(currentOperatorFunction, firstNumber, firstNumber)
+                    oldFirstNumber = firstNumber
+                }
+                else {
+                    displayedNumber = operate(currentOperatorFunction, firstNumber, oldFirstNumber)
+                }
             }
+            firstNumber = displayedNumber
         default:
             break
     }
@@ -121,7 +131,6 @@ function handleOperator(operatorValue) {
         currentOperatorFunction = add
     }
     firstNumber = +displayedNumber
-    isSecondInput = true
 }
 
 let buttons = document.querySelectorAll('.button')
