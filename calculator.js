@@ -67,9 +67,15 @@ function handleButtonClick(buttonValue) {
             let stringDisplayedNum = displayedNumber.toString()
 
             if (number === 0) {
+                // Don't do anything if displayedNumber is 0 and user is pressing 0
+                // We don't want to display 00 on the calculator; just 0 is fine
                 if (stringDisplayedNum === '0') {
                     break
                 }
+                // Otherwise add 0 as a digit
+                // If displayedNumber is 1, then stringDisplayedNum should equal 10
+                // If displayedNumber is 201, then stringDisplayedNum should = 2010
+                // etc.
                 stringDisplayedNum += buttonValue
             }
             else {
@@ -105,6 +111,8 @@ function handleEqualsButton() {
         displayedNumber = operate(currentOperatorFunction, firstNumber, secondNumber)
         hasSecondInput = false
     }
+    // When user inputs something similar to 7 * = 
+    // i.e., there isn't a secondNumber available to use
     else {
         if (oldFirstNumber === null) {
             displayedNumber = operate(currentOperatorFunction, firstNumber, firstNumber)
@@ -118,7 +126,7 @@ function handleEqualsButton() {
 }
 
 function handleOperator(operatorValue) {
-    // User inputs 7, clicks X button, then =, then gets 49
+    // User inputs 7, clicks * button, then =, then gets 49
     // User must be able to change operator and retain the current displayedNumber
     // That's what this if-statement does
     // Thanks to this check, users can click the + button, then = and get 98 (49 + 49)
