@@ -118,6 +118,14 @@ function handleButtonClick(buttonValue) {
 }
 
 function handleOperator(operatorValue) {
+    // User inputs 7, clicks X button, then =, then gets 49
+    // User must be able to change operator and retain the current displayedNumber
+    // That's what this if-statement does
+    // Thanks to this check, users can click the + button, then = and get 98 (49 + 49)
+    if (currentOperatorFunction !== null) {
+        oldFirstNumber = displayedNumber
+    }
+
     if (operatorValue === '/') {
         currentOperatorFunction = divide
     }
