@@ -9,11 +9,6 @@ let hasSecondInput = false
 
 let oldFirstNumber = null
 
-const MODES = {
-    OPERATOR: 'operator', // when user clicks an operator button
-    INPUT: 'input' // when user is typing numbers 0-9
-}
-
 function add(n1, n2) {
     return n1 + n2
 }
@@ -96,25 +91,30 @@ function handleButtonClick(buttonValue) {
             handleOperator(buttonValue)
             break
         case '=':
-            if (isSecondInput) {
-                displayedNumber = operate(currentOperatorFunction, firstNumber, secondNumber)
-                hasSecondInput = false
-            }
-            else {
-                if (oldFirstNumber === null) {
-                    displayedNumber = operate(currentOperatorFunction, firstNumber, firstNumber)
-                    oldFirstNumber = firstNumber
-                }
-                else {
-                    displayedNumber = operate(currentOperatorFunction, firstNumber, oldFirstNumber)
-                }
-            }
-            firstNumber = displayedNumber
+            handleEqualsButton()
+            break
         default:
             break
     }
 
     displayText.innerText = displayedNumber
+}
+
+function handleEqualsButton() {
+    if (isSecondInput) {
+        displayedNumber = operate(currentOperatorFunction, firstNumber, secondNumber)
+        hasSecondInput = false
+    }
+    else {
+        if (oldFirstNumber === null) {
+            displayedNumber = operate(currentOperatorFunction, firstNumber, firstNumber)
+            oldFirstNumber = firstNumber
+        }
+        else {
+            displayedNumber = operate(currentOperatorFunction, firstNumber, oldFirstNumber)
+        }
+    }
+    firstNumber = displayedNumber
 }
 
 function handleOperator(operatorValue) {
@@ -124,6 +124,12 @@ function handleOperator(operatorValue) {
     // Thanks to this check, users can click the + button, then = and get 98 (49 + 49)
     if (currentOperatorFunction !== null) {
         oldFirstNumber = displayedNumber
+
+        // Update displayedNumber during lengthier calculations
+        if (hasSecondInput) {
+            handleEqualsButton()
+            displayText.innerText = displayedNumber
+        }
     }
 
     if (operatorValue === '/') {
