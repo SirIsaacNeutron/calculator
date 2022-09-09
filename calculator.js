@@ -2,6 +2,11 @@ let displayedNumber = 0
 let firstNumber = null
 let secondNumber = null
 
+let currentOperatorFunction = null
+
+let isSecondInput = false
+let hasSecondInput = false
+
 const MODES = {
     OPERATOR: 'operator', // when user clicks an operator button
     INPUT: 'input' // when user is typing numbers 0-9
@@ -32,29 +37,39 @@ displayText.innerText = displayedNumber
 
 function handleButtonClick(buttonValue) {
     switch (buttonValue) {
-        case "C":
+        case 'C':
             displayedNumber = 0
+            isSecondInput = false
+            hasSecondInput = false
+            firstNumber = null
+            secondNumber = null
+            currentOperatorFunction = null
+
             break
-        case "+/-":
+        case '+/-':
             displayedNumber *= -1
             break
-        case "%":
+        case '%':
             displayedNumber /= 100
             break
-        case "9":
-        case "8":
-        case "7":
-        case "6":
-        case "5":
-        case "4":
-        case "3":
-        case "2":
-        case "1":
-        case "0":
+        case '9':
+        case '8':
+        case '7':
+        case '6':
+        case '5':
+        case '4':
+        case '3':
+        case '2':
+        case '1':
+        case '0':
+            if (firstNumber !== null && !hasSecondInput) {
+                displayedNumber = 0
+            }
             const number = +buttonValue // works even on negative numbers
             let stringDisplayedNum = displayedNumber.toString()
+
             if (number === 0) {
-                if (stringDisplayedNum === "0") {
+                if (stringDisplayedNum === '0') {
                     break
                 }
                 stringDisplayedNum += buttonValue
@@ -64,7 +79,27 @@ function handleButtonClick(buttonValue) {
             }
 
             displayedNumber = +stringDisplayedNum
+
+            if (firstNumber !== null) {
+                secondNumber = displayedNumber
+                hasSecondInput = true
+            }
             break
+        case '/':
+        case '*':
+        case '-':
+        case '+':
+            handleOperator(buttonValue)
+            break
+        case '=':
+            if (isSecondInput) {
+                displayedNumber = operate(currentOperatorFunction, firstNumber, secondNumber)
+                firstNumber = displayedNumber
+                hasSecondInput = false
+            }
+            else {
+                displayedNumber = operate(currentOperatorFunction, firstNumber, firstNumber)
+            }
         default:
             break
     }
@@ -72,11 +107,27 @@ function handleButtonClick(buttonValue) {
     displayText.innerText = displayedNumber
 }
 
+function handleOperator(operatorValue) {
+    if (operatorValue === '/') {
+        currentOperatorFunction = divide
+    }
+    else if (operatorValue === '*') {
+        currentOperatorFunction = multiply
+    }
+    else if (operatorValue === '-') {
+        currentOperatorFunction = subtract
+    }
+    else {
+        currentOperatorFunction = add
+    }
+    firstNumber = +displayedNumber
+    isSecondInput = true
+}
+
 let buttons = document.querySelectorAll('.button')
 buttons.forEach(button => {
     const buttonValue = button.getAttribute('value')
     button.addEventListener('click', e => {
-        console.log(buttonValue)
         handleButtonClick(buttonValue)
     })
 })
