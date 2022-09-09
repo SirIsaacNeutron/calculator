@@ -117,3 +117,7 @@ body {
     flex: 2.02;
     border-bottom-left-radius: 20px;
 }
+
+footer {
+    margin-top: 20px;
+}
