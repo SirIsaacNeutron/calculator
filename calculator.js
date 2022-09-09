@@ -4,7 +4,7 @@ let secondNumber = null
 
 let currentOperatorFunction = null
 
-let isSecondInput = false
+let hasHadSecondInput = false
 let hasSecondInput = false
 
 let oldFirstNumber = null
@@ -36,7 +36,7 @@ function handleButtonClick(buttonValue) {
     switch (buttonValue) {
         case 'C':
             displayedNumber = 0
-            isSecondInput = false
+            hasHadSecondInput = false
             hasSecondInput = false
             firstNumber = null
             secondNumber = null
@@ -81,7 +81,7 @@ function handleButtonClick(buttonValue) {
             if (firstNumber !== null) {
                 secondNumber = displayedNumber
                 hasSecondInput = true
-                isSecondInput = true
+                hasHadSecondInput = true
             }
             break
         case '/':
@@ -101,7 +101,7 @@ function handleButtonClick(buttonValue) {
 }
 
 function handleEqualsButton() {
-    if (isSecondInput) {
+    if (hasHadSecondInput) {
         displayedNumber = operate(currentOperatorFunction, firstNumber, secondNumber)
         hasSecondInput = false
     }
